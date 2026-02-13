@@ -29,6 +29,38 @@ export async function GET(request: Request) {
   }
 }
 
+// PUT: Update a newsletter subscription (e.g. toggle active/inactive)
+export async function PUT(request: Request) {
+  try {
+    const body = await request.json();
+    const { id, ...updates } = body;
+
+    if (!id) {
+      return NextResponse.json({ success: false, error: 'ID is required' }, { status: 400 });
+    }
+
+    // If deactivating, set unsubscribed_at timestamp
+    if (updates.is_active === false) {
+      updates.unsubscribed_at = new Date().toISOString();
+    } else if (updates.is_active === true) {
+      updates.unsubscribed_at = null;
+    }
+
+    const { data, error } = await supabase
+      .from('newsletter_subscriptions')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return NextResponse.json({ success: true, data });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
 // DELETE: Delete / unsubscribe a newsletter subscriber
 export async function DELETE(request: Request) {
   try {

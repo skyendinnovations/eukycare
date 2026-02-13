@@ -70,6 +70,8 @@ export default function ReferralsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -92,12 +94,40 @@ export default function ReferralsPage() {
     });
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setUploadError(null);
+
+    // Validate files
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    
+    const validFiles = files.filter(file => {
+      if (file.size > maxSize) {
+        setUploadError(`${file.name} is too large. Maximum size is 10MB.`);
+        return false;
+      }
+      if (!allowedTypes.includes(file.type)) {
+        setUploadError(`${file.name} is not a supported file type. Please upload PDF or DOC files.`);
+        return false;
+      }
+      return true;
+    });
+
+    setUploadedFiles(prev => [...prev, ...validFiles]);
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError(null);
 
     try {
+      // First, create the referral
       const response = await fetch('/api/referrals', {
         method: 'POST',
         headers: {
@@ -138,6 +168,27 @@ export default function ReferralsPage() {
 
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit referral');
+      }
+
+      // If there are files to upload, upload them
+      if (uploadedFiles.length > 0 && result.referralId) {
+        const formData = new FormData();
+        uploadedFiles.forEach((file) => {
+          formData.append('files', file);
+        });
+        formData.append('referralId', result.referralId);
+
+        const uploadResponse = await fetch('/api/referrals/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const uploadResult = await uploadResponse.json();
+        
+        if (!uploadResponse.ok || !uploadResult.success) {
+          console.error('File upload failed:', uploadResult.error);
+          // Don't fail the whole submission if file upload fails
+        }
       }
 
       setIsSubmitted(true);
@@ -640,6 +691,12 @@ export default function ReferralsPage() {
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900">Supporting Documentation</h2>
               </div>
 
+              {uploadError && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                  {uploadError}
+                </div>
+              )}
+
               <div className="border-2 border-dashed border-slate-200 rounded-xl p-6 sm:p-8 text-center hover:border-eukyPurple/50 transition-colors">
                 <svg className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -650,6 +707,7 @@ export default function ReferralsPage() {
                   type="file"
                   multiple
                   accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
                   className="hidden"
                   id="file-upload"
                 />
@@ -660,6 +718,35 @@ export default function ReferralsPage() {
                   Choose Files
                 </label>
               </div>
+
+              {/* Display uploaded files */}
+              {uploadedFiles.length > 0 && (
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium text-slate-700">Uploaded Files:</p>
+                  {uploadedFiles.map((file, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg border border-slate-200">
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-eukyPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <div>
+                          <p className="text-sm font-medium text-slate-900">{file.name}</p>
+                          <p className="text-xs text-slate-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeFile(index)}
+                        className="text-red-600 hover:text-red-800 transition-colors"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Submit Button */}
@@ -716,13 +803,13 @@ export default function ReferralsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:1300000000"
+              href="tel:0870017600"
               className="inline-flex items-center justify-center px-5 py-2.5 bg-eukyPurple text-white font-medium rounded-full hover:bg-eukyPurple/90 transition-all"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              Call 1300 000 000
+              Call 0870017600
             </a>
             <a
               href="mailto:referrals@eukycare.com.au"

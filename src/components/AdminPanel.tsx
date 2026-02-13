@@ -17,6 +17,11 @@ interface ContactSubmission {
   status: string;
   created_at: string;
 }
+interface ReferralDocument {
+  path: string;
+  url: string | null;
+  name: string;
+}
 interface Referral {
   id: string;
   referrer_name: string;
@@ -28,6 +33,7 @@ interface Referral {
   primary_disability: string;
   ndis_number: string;
   services_requested: string[];
+  supporting_documents_signed?: ReferralDocument[];
   status: string;
   notes: string;
   created_at: string;
@@ -1019,6 +1025,46 @@ function AdminDashboard() {
                           )}
                         </div>
                       </div>
+                      {/* Supporting Documents */}
+                      {r.supporting_documents_signed && r.supporting_documents_signed.length > 0 && (
+                        <div className="mb-4 pt-3 border-t border-gray-100">
+                          <h4 className="text-xs font-bold text-purple-700 uppercase tracking-wider mb-2">
+                            Supporting Documents
+                          </h4>
+                          <div className="flex flex-col gap-2">
+                            {r.supporting_documents_signed.map((doc, i) => (
+                              doc.url ? (
+                                <a
+                                  key={i}
+                                  href={doc.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-3 p-2.5 bg-white hover:bg-purple-50 rounded-lg border border-gray-200 hover:border-purple-300 transition-all group"
+                                >
+                                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                  </div>
+                                  <span className="text-sm text-gray-700 group-hover:text-purple-700 flex-1 truncate font-medium">{doc.name}</span>
+                                  <svg className="w-4 h-4 text-gray-400 group-hover:text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                  </svg>
+                                </a>
+                              ) : (
+                                <div key={i} className="flex items-center gap-3 p-2.5 bg-red-50 rounded-lg border border-red-100">
+                                  <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                                    </svg>
+                                  </div>
+                                  <span className="text-sm text-red-500 flex-1 truncate">{doc.name} — link expired, refresh page</span>
+                                </div>
+                              )
+                            ))}
+                          </div>
+                        </div>
+                      )}
                       <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-gray-100">
                         <div className="flex flex-wrap items-center gap-1.5">
                           <span className="text-xs font-semibold text-gray-500 mr-1">Status:</span>

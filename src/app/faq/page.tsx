@@ -173,7 +173,7 @@ export default async function FAQPage() {
               </div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1">Call Us</h3>
               <p className="text-slate-600 text-xs sm:text-sm mb-2 sm:mb-3">Speak directly with our team</p>
-              <a href="tel:1300000000" className="text-lg sm:text-xl font-bold text-eukyPurple hover:underline">1300 EUKY CARE</a>
+              <a href="tel:0870017600" className="text-lg sm:text-xl font-bold text-eukyPurple hover:underline">0870017600</a>
             </div>
             <div className="bg-eukyGreen/5 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center hover:bg-eukyGreen/10 transition-colors hover:scale-[1.03] hover:-translate-y-1 duration-300">
               <div className="w-11 h-11 sm:w-12 sm:h-12 bg-eukyGreen/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">

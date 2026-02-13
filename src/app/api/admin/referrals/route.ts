@@ -1,6 +1,53 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+// Helper: Generate signed URLs for supporting documents
+async function addSignedUrls(referrals: any[]) {
+  return Promise.all(
+    referrals.map(async (referral) => {
+      if (referral.supporting_documents && referral.supporting_documents.length > 0) {
+        const signedDocs = await Promise.all(
+          referral.supporting_documents.map(async (docPath: string) => {
+            let storagePath = docPath;
+
+            // If it's a full URL (legacy data), extract the storage path from it
+            // URL format: https://xxx.supabase.co/storage/v1/object/public/referral-documents/PATH
+            if (docPath.startsWith('http')) {
+              const match = docPath.match(/\/referral-documents\/(.+)$/);
+              if (match) {
+                storagePath = decodeURIComponent(match[1]);
+              } else {
+                // Can't parse the URL, return it as-is with a warning
+                const fileName = docPath.split('/').pop() || 'document';
+                return { path: docPath, url: docPath, name: fileName };
+              }
+            }
+
+            // Generate a signed URL valid for 1 hour
+            const { data, error } = await supabase.storage
+              .from('referral-documents')
+              .createSignedUrl(storagePath, 3600);
+
+            // Extract a readable filename from the path
+            const segments = storagePath.split('/');
+            const rawName = segments[segments.length - 1] || 'document';
+            // Strip the timestamp prefix (e.g. "1707868800000-NDIS_Plan.pdf" -> "NDIS_Plan.pdf")
+            const name = rawName.replace(/^\d+-/, '');
+
+            return {
+              path: storagePath,
+              url: error ? null : data?.signedUrl,
+              name,
+            };
+          })
+        );
+        return { ...referral, supporting_documents_signed: signedDocs };
+      }
+      return { ...referral, supporting_documents_signed: [] };
+    })
+  );
+}
+
 // GET: Fetch all referrals
 export async function GET(request: Request) {
   try {
@@ -23,9 +70,12 @@ export async function GET(request: Request) {
     const { data, error, count } = await query;
     if (error) throw error;
 
+    // Generate signed URLs for any supporting documents
+    const dataWithSignedUrls = data ? await addSignedUrls(data) : [];
+
     return NextResponse.json({
       success: true,
-      data,
+      data: dataWithSignedUrls,
       total: count,
       page,
       limit,

@@ -46,7 +46,7 @@ const jsonLd = {
   logo: "https://eukycare.com.au/logo.png",
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+61-3-9123-4567",
+    telephone: "0870017600",
     contactType: "customer service",
   },
   sameAs: [
@@ -320,99 +320,213 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      {/* Your Path to Better Everyday Living */}
+      {/* Why Choose Euky Care */}
       <MotionSection
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 to-white"
+        className="py-12 sm:py-16 md:py-20 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[2fr_3fr] gap-8 sm:gap-10 lg:gap-16 items-center">
-            {/* Left content */}
-            <MotionDiv
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
-                Your Path to Better<br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>Everyday Living
-              </h2>
-              <p className="text-slate-600 leading-relaxed text-sm sm:text-base md:text-lg">
-                We are a passionate team of NDIS professionals
-                focused on delivering reliable, high-quality
-                support services. Our mission is to understand
-                your needs, provide the right care, and help you
-                achieve the goals that matter most to you.
-              </p>
-            </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center mb-8 sm:mb-10 md:mb-14"
+          >
+            <span className="inline-flex items-center px-3 py-1.5 bg-eukyPurple/10 text-eukyPurple font-medium rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-eukyPurple rounded-full mr-2"></span>
+              Why Euky Care
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
+              Your Trusted <span className="text-eukyPurple">NDIS Partner</span>
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base px-2">
+              We are a passionate team of NDIS professionals focused on delivering reliable, high-quality
+              support services. Our mission is to understand your needs and help you achieve the goals that matter most.
+            </p>
+          </MotionDiv>
 
-            {/* Right - Feature Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-              {/* Trusted NDIS Provider */}
-              <MotionDiv
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                whileHover={{ scale: 1.05, y: -8 }}
-                className="bg-eukyPurple rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-7 text-white shadow-lg hover:shadow-2xl min-h-[180px] sm:min-h-[220px] lg:min-h-[240px] flex flex-col cursor-pointer"
-              >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              {
+                icon: (
+                  <svg className="w-6 h-6 text-eukyPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                </div>
-                <h3 className="font-bold text-white text-sm sm:text-base lg:text-lg mb-2 sm:mb-2.5">Trusted NDIS<br className="hidden sm:block" /><span className="sm:hidden"> </span>Provider</h3>
-                <p className="text-[11px] sm:text-xs lg:text-sm text-white/90 leading-relaxed">
-                  We are a reliable and fully registered NDIS provider committed to delivering high-quality, safe, and transparent support services you can trust.
-                </p>
-              </MotionDiv>
-
-              {/* Qualified Support Workers */}
-              <MotionDiv
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                whileHover={{ scale: 1.05, y: -8 }}
-                className="bg-[#534371] rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-7 text-white shadow-lg hover:shadow-2xl min-h-[180px] sm:min-h-[220px] lg:min-h-[240px] flex flex-col cursor-pointer"
-              >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                ),
+                title: "Registered NDIS Provider",
+                description: "Fully registered and compliant with all NDIS quality and safety standards, ensuring trustworthy support.",
+                color: "bg-eukyPurple/5 border-eukyPurple/20",
+              },
+              {
+                icon: (
+                  <svg className="w-6 h-6 text-eukyGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                </div>
-                <h3 className="font-bold text-white text-sm sm:text-base lg:text-lg mb-2 sm:mb-2.5">Qualified<br className="hidden sm:block" /><span className="sm:hidden"> </span>Support Workers</h3>
-                <p className="text-[11px] sm:text-xs lg:text-sm text-white/90 leading-relaxed">
-                  Our team consists of trained and experienced support workers who bring professionalism and genuine care to every participant interaction.
-                </p>
-              </MotionDiv>
-
-              {/* Participant Focused Care */}
-              <MotionDiv
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                whileHover={{ scale: 1.05, y: -8 }}
-                className="bg-eukyGreen rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-7 text-white shadow-lg hover:shadow-2xl min-h-[180px] sm:min-h-[220px] lg:min-h-[240px] flex flex-col cursor-pointer"
-              >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                ),
+                title: "Qualified Support Workers",
+                description: "Trained and experienced professionals who bring genuine care and empathy to every interaction.",
+                color: "bg-eukyGreen/5 border-eukyGreen/20",
+              },
+              {
+                icon: (
+                  <svg className="w-6 h-6 text-eukyPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
+                ),
+                title: "Person-Centred Approach",
+                description: "Every service is designed around your unique goals, preferences, and lifestyle needs.",
+                color: "bg-eukyPurple/5 border-eukyPurple/20",
+              },
+              {
+                icon: (
+                  <svg className="w-6 h-6 text-eukyGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
+                title: "Flexible & Responsive",
+                description: "We adapt our support to suit your schedule, ensuring services are available when you need them most.",
+                color: "bg-eukyGreen/5 border-eukyGreen/20",
+              },
+            ].map((feature, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className={`${feature.color} border rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-7 cursor-pointer transition-shadow hover:shadow-lg`}
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center mb-3 sm:mb-4 shadow-sm">
+                  {feature.icon}
                 </div>
-                <h3 className="font-bold text-white text-sm sm:text-base lg:text-lg mb-2 sm:mb-2.5">Participant<br className="hidden sm:block" /><span className="sm:hidden"> </span>Focussed Care</h3>
-                <p className="text-[11px] sm:text-xs lg:text-sm text-white/90 leading-relaxed">
-                  We design every service around your goals, preferences, and lifestyle—ensuring you receive support that truly reflects your individual needs.
-                </p>
+                <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-2">{feature.title}</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{feature.description}</p>
               </MotionDiv>
-            </div>
+            ))}
           </div>
+        </div>
+      </MotionSection>
+
+      {/* How It Works */}
+      <MotionSection
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 pointer-events-none opacity-20">
+          <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
+            <circle cx="0" cy="100" r="150" stroke="#88BF45" strokeWidth="2" fill="none"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-0 right-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 pointer-events-none opacity-20">
+          <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
+            <circle cx="200" cy="100" r="150" stroke="#6A2875" strokeWidth="2" fill="none"/>
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center mb-8 sm:mb-10 md:mb-14"
+          >
+            <span className="inline-flex items-center px-3 py-1.5 bg-eukyGreen/10 text-eukyGreen font-medium rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-eukyGreen rounded-full mr-2"></span>
+              Getting Started
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 sm:mb-4">
+              How It <span className="text-eukyPurple">Works</span>
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base px-2">
+              Getting started with Euky Care is simple. We guide you through every step to ensure
+              you receive the right support, tailored to your needs.
+            </p>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative">
+            {/* Connecting line (desktop only) */}
+            <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-eukyPurple via-eukyGreen to-eukyPurple opacity-20"></div>
+
+            {[
+              {
+                step: "01",
+                title: "Connect With Us",
+                description: "Reach out via phone, email, or our online form. We'll discuss your needs and answer any questions about NDIS eligibility and support options.",
+                icon: (
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                ),
+                bgColor: "bg-eukyPurple",
+              },
+              {
+                step: "02",
+                title: "Plan & Personalise",
+                description: "Our team works closely with you to create a tailored support plan that aligns with your goals, lifestyle, and aspirations.",
+                icon: (
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                ),
+                bgColor: "bg-eukyGreen",
+              },
+              {
+                step: "03",
+                title: "Start Your Support",
+                description: "Once your plan is finalised, we provide the right services and ongoing guidance, empowering you to live independently and confidently.",
+                icon: (
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                  </svg>
+                ),
+                bgColor: "bg-eukyPurple",
+              },
+            ].map((item, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 shadow-sm border border-slate-100 hover:shadow-xl transition-all text-center"
+              >
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 ${item.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-lg`}>
+                  {item.icon}
+                </div>
+                <span className="text-xs font-bold text-eukyPurple/50 uppercase tracking-wider">Step {item.step}</span>
+                <h3 className="font-bold text-slate-900 text-base sm:text-lg mt-1 mb-2 sm:mb-3">{item.title}</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.description}</p>
+              </MotionDiv>
+            ))}
+          </div>
+
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="text-center mt-8 sm:mt-10"
+          >
+            <Link
+              href="/referrals"
+              className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-3.5 bg-eukyPurple text-white font-semibold text-sm sm:text-base rounded-full hover:bg-eukyPurple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              Get Started Today
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </MotionDiv>
         </div>
       </MotionSection>
 
@@ -442,27 +556,15 @@ export default function HomePage() {
                 independence, and ease.
               </p>
 
-              {/* Service Links */}
-              <div className="space-y-0">
-                <Link href="/services/community-involvement" className="flex items-center justify-between py-3 sm:py-4 border-b border-slate-200 group">
-                  <span className="text-base sm:text-lg font-semibold text-eukyPurple group-hover:text-eukyPurple/80">Community Supports</span>
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-eukyPurple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <Link href="/services/support-services" className="flex items-center justify-between py-3 sm:py-4 border-b border-slate-200 group">
-                  <span className="text-base sm:text-lg font-medium text-slate-900 group-hover:text-eukyPurple transition-colors">Daily Living</span>
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-hover:text-eukyPurple group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <Link href="/services/support-services" className="flex items-center justify-between py-3 sm:py-4 border-b border-slate-200 group">
-                  <span className="text-base sm:text-lg font-medium text-slate-900 group-hover:text-eukyPurple transition-colors">Transport Assistance</span>
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-hover:text-eukyPurple group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
+              <Link
+                href="/services"
+                className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-3.5 bg-eukyPurple text-white font-semibold text-sm sm:text-base rounded-full hover:bg-eukyPurple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl mt-2"
+              >
+                Explore Our Services
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
             </MotionDiv>
 
             {/* Right - Images */}
@@ -523,159 +625,105 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      {/* Empowering Your Journey */}
+      {/* Our Values Section */}
       <MotionSection
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="py-12 sm:py-16 md:py-20 bg-white relative overflow-hidden"
+        className="py-12 sm:py-16 md:py-20 bg-white"
       >
-        {/* Background curved accents */}
-        <div className="absolute top-0 left-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 pointer-events-none opacity-20">
-          <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
-            <circle cx="0" cy="100" r="150" stroke="#88BF45" strokeWidth="2" fill="none"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-0 right-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 pointer-events-none opacity-20">
-          <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
-            <circle cx="200" cy="100" r="150" stroke="#6A2875" strokeWidth="2" fill="none"/>
-          </svg>
-        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
+            {/* Left - Values Grid */}
+            <MotionDiv
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className="inline-flex items-center px-3 py-1.5 bg-eukyGreen/10 text-eukyGreen font-medium rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-eukyGreen rounded-full mr-2"></span>
+                What Drives Us
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 sm:mb-4">
+                Built on <span className="text-eukyPurple">Values</span> That Matter
+              </h2>
+              <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
+                At Euky Care, our values guide every decision we make and every service we deliver.
+                We believe that quality disability support begins with genuine compassion, trust, and respect.
+              </p>
+              <Link
+                href="/about"
+                className="inline-flex items-center text-eukyPurple font-semibold text-sm sm:text-base hover:underline"
+              >
+                Learn more about us
+                <svg className="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </MotionDiv>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-slate-900 mb-3 sm:mb-4">
-              Empowering Your Journey with<br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>Personalised Support
-            </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base px-2">
-              We provide personalised NDIS support designed around your goals, lifestyle, and needs. From daily
-              living to community participation, our services empower you to live with confidence,
-              independence, and ease.
-            </p>
-          </div>
-
-          {/* Steps with central image */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
-              {/* Left steps */}
-              <div className="space-y-6 md:space-y-8 order-2 md:order-1">
-                {/* Connect With Us */}
-                <MotionDiv
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  className="bg-eukyPurple/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 relative">
-                  <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-eukyPurple rounded-full hidden lg:block"></div>
-                  <div className="w-10 h-10 bg-eukyPurple/20 rounded-xl flex items-center justify-center mb-3">
-                    <svg className="w-5 h-5 text-eukyPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            {/* Right - Values Cards */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {[
+                {
+                  title: "Compassion",
+                  description: "We approach every interaction with empathy and genuine care.",
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">Connect With Us</h3>
-                  <p className="text-sm text-slate-600">
-                    Reach out via phone, email, or our online form. We'll discuss your needs and answer any questions about NDIS eligibility and support options.
-                  </p>
-                </MotionDiv>
-
-                {/* Start Support */}
-                <MotionDiv
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  className="bg-eukyGreen/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 relative">
-                  <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-eukyGreen rounded-full hidden lg:block"></div>
-                  <div className="w-10 h-10 bg-eukyGreen/20 rounded-xl flex items-center justify-center mb-3">
-                    <svg className="w-5 h-5 text-eukyGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  ),
+                  color: "bg-eukyPurple",
+                },
+                {
+                  title: "Integrity",
+                  description: "Honest, transparent, and ethical in everything we do.",
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">Start Support</h3>
-                  <p className="text-sm text-slate-600">
-                    Once your plan is finalised, we provide the right services and ongoing guidance, empowering you to live independently and confidently.
-                  </p>
-                </MotionDiv>
-              </div>
-
-              {/* Center image */}
-              <MotionDiv
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
-                className="relative order-1 md:order-2 flex justify-center">
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-full md:h-auto md:aspect-square">
-                  <MotionDiv
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ 
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      type: "tween"
-                    }}
-                    className="absolute inset-0 border-2 border-eukyPurple/20 rounded-full scale-110"
-                  />
-                  <MotionDiv
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      type: "tween"
-                    }}
-                    className="w-full h-full bg-slate-200 rounded-full overflow-hidden relative z-10"
-                  >
-                    <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                      <span className="text-5xl sm:text-6xl md:text-8xl">😊</span>
-                    </div>
-                  </MotionDiv>
-                  {/* NDIS Badge */}
-                  <MotionDiv
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.8, type: "spring", bounce: 0.5 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:right-0 z-20"
-                  >
-                    <div className="bg-white rounded-full px-2 py-1 sm:px-3 sm:py-1.5 shadow-lg border border-slate-100 flex items-center gap-1">
-                      <span className="text-slate-600 text-[10px] sm:text-xs">I</span>
-                      <span className="text-red-500 text-[10px] sm:text-xs">❤️</span>
-                      <span className="text-eukyPurple font-bold text-[10px] sm:text-xs">ndis</span>
-                    </div>
-                  </MotionDiv>
-                </div>
-              </MotionDiv>
-
-              {/* Right step */}
-              <div className="order-3 md:order-3">
-                <MotionDiv
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm relative">
-                  <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-eukyPurple rounded-full hidden lg:block"></div>
-                  <div className="w-10 h-10 bg-eukyPurple/10 rounded-xl flex items-center justify-center mb-3">
-                    <svg className="w-5 h-5 text-eukyPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  ),
+                  color: "bg-eukyGreen",
+                },
+                {
+                  title: "Empowerment",
+                  description: "Supporting your choices and helping you achieve your goals.",
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
+                  ),
+                  color: "bg-eukyGreen",
+                },
+                {
+                  title: "Inclusion",
+                  description: "Everyone is valued, respected, and included in our community.",
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  ),
+                  color: "bg-eukyPurple",
+                },
+              ].map((value, index) => (
+                <MotionDiv
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  whileHover={{ scale: 1.03, y: -3 }}
+                  className="bg-slate-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-slate-100 hover:shadow-md transition-all"
+                >
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 ${value.color} rounded-lg sm:rounded-xl flex items-center justify-center mb-3 text-white`}>
+                    {value.icon}
                   </div>
-                  <h3 className="font-bold text-slate-900 mb-2">Plan & Personalise</h3>
-                  <p className="text-sm text-slate-600">
-                    Our team works with you to create a tailored support plan that aligns with your goals, lifestyle, and aspirations.
-                  </p>
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1">{value.title}</h3>
+                  <p className="text-slate-600 text-[11px] sm:text-xs leading-relaxed">{value.description}</p>
                 </MotionDiv>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -880,6 +928,62 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
+      {/* CTA Banner */}
+      <MotionSection
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-eukyPurple via-[#534371] to-eukyPurple relative overflow-hidden"
+      >
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-40 sm:w-64 h-40 sm:h-64 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-48 sm:w-72 h-48 sm:h-72 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-eukyGreen/5 rounded-full blur-3xl"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="inline-flex items-center px-3 py-1.5 bg-white/10 text-white font-medium rounded-full text-xs sm:text-sm mb-4 sm:mb-6 backdrop-blur-sm border border-white/20">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-eukyGreen rounded-full mr-2"></span>
+              Ready to Begin?
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+              Take the First Step Towards<br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>Better Support
+            </h2>
+            <p className="text-white/80 max-w-2xl mx-auto text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed px-2">
+              Whether you&apos;re new to the NDIS or looking for a better provider, our team is here to help.
+              Get in touch today and let us create a support plan that works for you.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Link
+                href="/referrals"
+                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-3.5 bg-eukyGreen text-white font-semibold text-sm sm:text-base rounded-full hover:bg-eukyGreen/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Make a Referral
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <a
+                href="tel:0870017600"
+                className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-3.5 bg-white/10 text-white font-semibold text-sm sm:text-base rounded-full hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Call 0870017600
+              </a>
+            </div>
+          </MotionDiv>
+        </div>
+      </MotionSection>
+
       {/* Contact Section */}
       <section className="bg-eukyPurple">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
@@ -898,9 +1002,8 @@ export default function HomePage() {
               </div>
               <h3 className="text-white font-medium mb-1 text-sm sm:text-base">Come Visit Us</h3>
               <p className="text-white/70 text-xs sm:text-sm">
-                123 Collins Street<br />
-                Melbourne VIC 3000<br />
-                Australia
+                52 Nilpena Avenue<br />
+                Park Holme, SA 5043
               </p>
             </div>
             <div className="text-center">
@@ -910,7 +1013,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-white font-medium mb-1 text-sm sm:text-base">Call Us Anytime</h3>
-              <p className="text-white/70 text-xs sm:text-sm">+61 3 9123 4567</p>
+              <p className="text-white/70 text-xs sm:text-sm">0870017600</p>
             </div>
             <div className="text-center">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
@@ -919,7 +1022,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-white font-medium mb-1 text-sm sm:text-base">Enquire Now</h3>
-              <p className="text-white/70 text-xs sm:text-sm">jane.smith@example.com</p>
+              <p className="text-white/70 text-xs sm:text-sm">info@eukycare.com.au</p>
             </div>
           </div>
         </div>
