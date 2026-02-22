@@ -869,11 +869,19 @@ export default function HomePage() {
                 <input type="tel" placeholder="Phone Number" className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-eukyPurple/20 focus:border-eukyPurple text-sm" />
                 <input type="email" placeholder="Email Address" className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-eukyPurple/20 focus:border-eukyPurple text-sm" />
                 <select className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-eukyPurple/20 focus:border-eukyPurple text-sm text-slate-500">
-                  <option>Select the Service</option>
-                  <option>Community Supports</option>
-                  <option>Daily Living</option>
-                  <option>Transport Assistance</option>
+                  <option value="">Select the Service</option>
                   <option>Accommodation</option>
+                  <option>Support Coordination</option>
+                  <option>Assist Personal Activities</option>
+                  <option>Assist Travel</option>
+                  <option>Community Nursing</option>
+                  <option>Exercise Physiology</option>
+                  <option>Household Tasks</option>
+                  <option>Personal Activities High</option>
+                  <option>Community Participation</option>
+                  <option>Development Life Skills</option>
+                  <option>Group/Centre Activities</option>
+                  <option>Interpreting &amp; Translation</option>
                 </select>
                 <textarea placeholder="Comment" rows={4} className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-eukyPurple/20 focus:border-eukyPurple text-sm resize-none"></textarea>
                 <button type="submit" className="w-full py-2.5 sm:py-3 bg-eukyPurple text-white font-medium rounded-lg sm:rounded-xl hover:bg-eukyPurple/90 transition-colors text-sm sm:text-base">
