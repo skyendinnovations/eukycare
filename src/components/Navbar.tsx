@@ -2,73 +2,62 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
-
-// Services dropdown organized by category matching the mega-menu
-const serviceCategories = [
-  {
-    title: "Accommodation",
-    items: [
-      { name: "Accommodation/Tenancy", href: "/services/accommodation-tenancy" },
-    ],
-  },
-  {
-    title: "Support Services",
-    items: [
-      { name: "Support Coordination", href: "/services/support-coordination" },
-      { name: "Assist Personal Activities Australia", href: "/services/assist-personal-activities" },
-      { name: "Assist Travel/Transportation", href: "/services/assist-travel-transportation" },
-      { name: "Community Nursing Services Melbourne", href: "/services/community-nursing" },
-      { name: "Ex Phy & Pers Training", href: "/services/exercise-physiology" },
-      { name: "Household Tasks", href: "/services/household-tasks" },
-      { name: "Personal Activities High", href: "/services/personal-activities-high" },
-    ],
-  },
-  {
-    title: "Community Involvement",
-    items: [
-      { name: "Community Participation Activities NDIS", href: "/services/community-participation" },
-      { name: "Development Life Skills", href: "/services/development-life-skills" },
-      { name: "Group/Centre Activities", href: "/services/group-centre-activities" },
-      { name: "Interpreting & Translation", href: "/services/interpreting-translation" },
-    ],
-  },
-];
+import { useState } from "react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setIsServicesOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About Us" },
     { href: "/faq", label: "NDIS" },
-  ];
-
-  const rightNavLinks = [
+    { href: "/services", label: "Services" },
     { href: "/referrals", label: "Referrals" },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-sm">
+      {/* Top Bar with Contact Info */}
+      <div className="bg-eukyPurple text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-9 text-xs sm:text-sm">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <a href="tel:0870017600" className="flex items-center gap-1.5 hover:text-eukyGreen transition-colors">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span className="hidden sm:inline">0870017600</span>
+              </a>
+              <a href="mailto:info@eukycare.com.au" className="flex items-center gap-1.5 hover:text-eukyGreen transition-colors">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="hidden sm:inline">info@eukycare.com.au</span>
+              </a>
+            </div>
+            {/* Social Media Icons */}
+            <div className="hidden sm:flex items-center gap-2">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-6 h-6 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-6 h-6 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-6 h-6 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+          {/* Logo + Text */}
+          <Link href="/" className="flex items-center gap-3">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20">
               <Image
                 src="/resources/brand_logo.png"
                 alt="Euky Care"
@@ -77,99 +66,34 @@ export default function Navbar() {
                 priority
               />
             </div>
+            <div className="flex flex-col">
+              <span className="text-base sm:text-sm md:text-sm font-bold text-eukyPurple leading-tight">Personalised Support</span>
+              <span className="text-base sm:text-sm md:text-sm font-bold text-eukyPurple leading-tight">for Meaningful Living.</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-slate-700 hover:text-eukyPurple transition-colors text-sm font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* Services Mega Dropdown */}
-            <div className="relative" ref={servicesRef}>
-              <button
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                onMouseEnter={() => setIsServicesOpen(true)}
-                className="flex items-center text-slate-700 hover:text-eukyPurple transition-colors text-sm font-medium"
-              >
-                Services
-                <svg
-                  className={`w-4 h-4 ml-1 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Mega Dropdown Menu */}
-              {isServicesOpen && (
-                <div
-                  className="absolute top-full right-0 xl:left-1/2 xl:-translate-x-1/2 mt-2 bg-white rounded-xl shadow-xl border border-slate-100 py-5 px-6 z-50 w-[calc(100vw-2rem)] sm:w-[620px] lg:w-[720px]"
-                  onMouseLeave={() => setIsServicesOpen(false)}
-                >
-                  <div className="grid grid-cols-3 gap-6">
-                    {serviceCategories.map((category) => (
-                      <div key={category.title}>
-                        <h3 className="text-sm font-bold text-eukyPurple mb-3 border-b border-slate-100 pb-2">
-                          {category.title}
-                        </h3>
-                        <ul className="space-y-1.5">
-                          {category.items.map((item) => (
-                            <li key={item.href}>
-                              <Link
-                                href={item.href}
-                                className="block text-sm text-slate-700 hover:text-eukyPurple hover:bg-purple-50 rounded-md px-2 py-1.5 transition-colors"
-                                onClick={() => setIsServicesOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 text-center">
-                    <Link
-                      href="/services"
-                      className="text-sm font-semibold text-eukyPurple hover:underline"
-                      onClick={() => setIsServicesOpen(false)}
-                    >
-                      View All Services →
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {rightNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-slate-700 hover:text-eukyPurple transition-colors text-sm font-medium"
+                className="text-slate-700 hover:text-eukyPurple transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-purple-50"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Right Side: Book Appointment */}
+          <div className="hidden lg:flex items-center">
             <Link
               href="/contact"
-              className="bg-eukyGreen text-white px-5 py-2 rounded-full hover:bg-eukyGreen/90 transition-colors text-sm font-medium inline-flex items-center"
+              className="bg-eukyGreen text-white px-5 py-2.5 rounded-full hover:bg-eukyGreen/90 transition-all duration-300 text-sm font-semibold inline-flex items-center hover:scale-105 shadow-md hover:shadow-lg"
             >
-              Contact Us
+              Book Appointment
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </Link>
           </div>
@@ -180,26 +104,11 @@ export default function Navbar() {
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -219,70 +128,42 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Mobile Services Accordion */}
-            <div className="px-4">
-              <button
-                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="flex items-center justify-between w-full py-2.5 text-slate-700 hover:text-eukyPurple text-sm font-medium"
-              >
-                Services
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${isMobileServicesOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            {/* Mobile Contact Info */}
+            <div className="px-4 pt-3 pb-2 border-t border-slate-100 mt-2 space-y-2">
+              <a href="tel:0870017600" className="flex items-center gap-2 text-sm text-slate-600 hover:text-eukyPurple">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-              </button>
-              {isMobileServicesOpen && (
-                <div className="pl-2 pb-2 space-y-3">
-                  <Link
-                    href="/services"
-                    className="block py-1.5 text-sm text-eukyPurple font-semibold"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    All Services
-                  </Link>
-                  {serviceCategories.map((category) => (
-                    <div key={category.title}>
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
-                        {category.title}
-                      </h4>
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block py-1.5 text-sm text-slate-600 hover:text-eukyPurple pl-2"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              )}
+                0870017600
+              </a>
+              <a href="mailto:info@eukycare.com.au" className="flex items-center gap-2 text-sm text-slate-600 hover:text-eukyPurple">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                info@eukycare.com.au
+              </a>
             </div>
-
-            {rightNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-4 py-2.5 text-slate-700 hover:text-eukyPurple hover:bg-slate-50 rounded-lg text-sm font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
 
             <Link
               href="/contact"
               className="block mx-4 mt-4 bg-eukyGreen text-white px-6 py-2.5 rounded-full hover:bg-eukyGreen/90 transition-colors text-center text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact Us
+              Book Appointment
             </Link>
+
+            {/* Mobile Social Icons */}
+            <div className="flex gap-3 px-4 pt-3">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-eukyPurple hover:text-white transition-all">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-eukyPurple hover:text-white transition-all">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-eukyPurple hover:text-white transition-all">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+              </a>
+            </div>
           </div>
         )}
       </div>

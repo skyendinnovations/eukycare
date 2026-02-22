@@ -14,6 +14,7 @@
   
   /* Font Family */
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
 }
 
 :root {
@@ -29,6 +30,15 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading font utility */
+.font-heading {
+  font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
 }
 
 /* Hero Section Animations */

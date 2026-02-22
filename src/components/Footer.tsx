@@ -238,13 +238,8 @@ export default function Footer() {
 
             {/* NDIS Badge */}
             <div className="flex items-center gap-2 mt-6">
-              <div className="bg-white rounded-lg px-4 py-3 shadow-sm border border-slate-200">
-                <div className="flex items-center gap-1">
-                  <span className="text-slate-600 text-sm">I</span>
-                  <span className="text-red-500 text-sm">❤️</span>
-                  <span className="text-eukyPurple font-bold text-sm">ndis</span>
-                </div>
-                <p className="text-[11px] text-slate-500 mt-1 leading-tight">REGISTERED<br/>NDIS<br/>PROVIDER</p>
+              <div className="relative w-28 h-auto">
+                <Image src="/resources/I-love-ndis_logo.png" alt="I Love NDIS" width={112} height={56} className="object-contain drop-shadow-sm" />
               </div>
             </div>
           </div>
